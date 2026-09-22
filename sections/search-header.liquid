@@ -9,65 +9,52 @@
 <div
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
-<div class="section page-width-content{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}">
+<div class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}">
   <div
-    class="
-      spacing-style
-      layout-panel-flex
-      layout-panel-flex--column
-      section-content-wrapper
-      mobile-column
-    "
+    class="spacing-style search-page__header"
     style="
-      {% render 'layout-panel-style', settings: section.settings %}
+      --horizontal-alignment: {{ section.settings.alignment }};
       {% render 'spacing-style', settings: section.settings %}
     "
   >
-    {% content_for 'blocks' %}
+    {% assign heading_text = 'content.search' | t %}
+
+    {% if search.performed %}
+      {% assign heading_text = 'content.search_results' | t %}
+    {% endif %}
+
+    {% capture heading_text %}
+      <h3>{{ heading_text }}</h3>
+    {% endcapture %}
+
+    {% content_for 'block', id: 'heading', type: '_heading', text: heading_text %}
+    {% content_for 'block', id: 'search', type: '_search-input' %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "t:names.page",
-  "class": "section-wrapper",
-  "blocks": [
-    {
-      "type": "@theme"
-    },
-    {
-      "type": "@app"
-    },
-    {
-      "type": "_divider"
-    }
-  ],
-  "disabled_on": {
-    "groups": ["header"]
-  },
+  "name": "t:names.search",
   "settings": [
     {
       "type": "select",
-      "id": "content_direction",
-      "label": "t:settings.direction",
+      "id": "alignment",
+      "label": "t:settings.alignment",
       "options": [
         {
-          "value": "column",
-          "label": "t:options.vertical"
+          "value": "flex-start",
+          "label": "t:options.direction_start"
+        },
+        {
+          "value": "center",
+          "label": "t:options.direction_center"
+        },
+        {
+          "value": "flex-end",
+          "label": "t:options.direction_end"
         }
       ],
-      "default": "column",
-      "visible_if": "{{ section.settings.gap < 0 }}"
-    },
-    {
-      "type": "range",
-      "id": "gap",
-      "label": "t:settings.gap",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 12
+      "default": "flex-start"
     },
     {
       "type": "color",
