@@ -1,1 +1,69 @@
+{{ 'hero.css' | asset_url | stylesheet_tag }}
 
+<section
+  class="hero hero--{{ section.settings.height }} hero--content-{{ section.settings.content_position }}{% if section.settings.image != blank %} hero--has-image{% endif %}"
+>
+  <div class="hero__content page-width">
+    {% content_for 'blocks' %}
+  </div>
+
+  {%- if section.settings.image != blank -%}
+    <div class="hero__media">
+      {{ section.settings.image | image_url: width: 2500 | image_tag: loading: 'eager', widths: '375, 550, 750, 1100, 1500, 2000, 2500', alt: section.settings.image.alt }}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "blocks": [{ "type": "hero" }],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Section height",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        {
+          "type": "hero",
+          "settings": {
+            "kicker": "Rawaq",
+            "heading": "Welcome to our store",
+            "text": "<p>Introduce your brand and direct visitors to your products with a short message.</p>",
+            "button_label": "Shop now",
+            "button_link": "/collections/all",
+            "alignment": "center"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

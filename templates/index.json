@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "content": {
+          "type": "hero",
+          "settings": {
+            "kicker": "Rawaq",
+            "heading": "Welcome to our store",
+            "text": "<p>Introduce your brand and direct visitors to your products with a short message.</p>",
+            "button_label": "Shop now",
+            "button_link": "/collections/all",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "content"
+      ],
+      "settings": {
+        "height": "medium",
+        "content_position": "center"
+      }
+    }
+  },
+  "order": [
+    "hero"
+  ]
+}

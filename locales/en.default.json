@@ -1,1 +1,95 @@
-
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "Sorry, we couldn't find the page you were looking for.",
+      "link": "Back to home"
+    },
+    "cart": {
+      "title": "Your cart",
+      "empty": "Your cart is currently empty.",
+      "continue_shopping": "Continue shopping",
+      "checkout": "Check out",
+      "update": "Update cart",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "product": "Product",
+      "quantity": "Quantity",
+      "total": "Total",
+      "items_count": {
+        "one": "1 item",
+        "other": "{{ count }} items"
+      },
+      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout."
+    },
+    "navigation": {
+      "main_navigation": "Main navigation",
+      "footer": "Footer"
+    },
+    "onboarding": {
+      "product_image": "Product image"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {{ number }} of {{ count }}"
+    },
+    "password_page": {
+      "heading": "Opening soon",
+      "password_label": "Enter store using password",
+      "password_placeholder": "Your password",
+      "password_button": "Enter",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"link\">Log in here</a>"
+    },
+    "gift_cards": {
+      "title": "You received a gift card to {{ shop }}",
+      "balance": "Gift card balance: {{ value }}",
+      "redeem": "Shop now with this gift card",
+      "shop_link": "Visit {{ shop }}",
+      "expired": "This gift card has expired",
+      "expired_subtext": "Contact the store for more information.",
+      "disabled": "This gift card has been disabled",
+      "disabled_subtext": "Contact the store for more information."
+    },
+    "search": {
+      "title": "Search",
+      "placeholder": "Search our store",
+      "submit": "Search",
+      "no_results": "No results found for \"{{ terms }}\".",
+      "results_with_count": {
+        "one": "{{ count }} result for \"{{ terms }}\"",
+        "other": "{{ count }} results for \"{{ terms }}\""
+      }
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "variant": "Variant"
+    }
+  },
+  "collections": {
+    "sort": {
+      "title": "Sort by"
+    },
+    "general": {
+      "title": "Collections",
+      "empty": "No products in this collection.",
+      "products": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      }
+    }
+  },
+  "blogs": {
+    "general": {
+      "no_articles": "No articles in this blog."
+    },
+    "article": {
+      "back_to_blog": "Back to {{ blog_title }}"
+    }
+  }
+}

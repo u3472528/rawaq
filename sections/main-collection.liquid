@@ -1,0 +1,86 @@
+{%- liquid
+  assign products_per_page = section.settings.products_per_page
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+-%}
+
+<section class="main-collection page-width">
+  <header class="collection__header">
+    <h1 class="collection__title">{{ collection.title }}</h1>
+    {%- if section.settings.show_description and collection.description != blank -%}
+      <div class="collection__description rte">{{ collection.description }}</div>
+    {%- endif -%}
+  </header>
+
+  {%- paginate collection.products by products_per_page -%}
+    {%- if collection.products.size > 0 -%}
+      <div class="collection__toolbar">
+        {%- if collection.sort_options.size > 0 -%}
+          <form class="collection__sort" method="get">
+            <label for="SortBy-{{ section.id }}">{{ 'collections.sort.title' | t }}</label>
+            <select id="SortBy-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>
+                  {{- option.name -}}
+                </option>
+              {%- endfor -%}
+            </select>
+          </form>
+        {%- endif -%}
+      </div>
+
+      <ul class="product-grid">
+        {%- for product in collection.products -%}
+          <li class="product-grid__item">
+            <a href="{{ product.url }}" class="product-card">
+              {%- if product.featured_image -%}
+                <div class="product-card__media">
+                  {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 450, 600, 900', alt: product.featured_image.alt | default: product.title }}
+                </div>
+              {%- endif -%}
+              <span class="product-card__vendor">{{ product.vendor }}</span>
+              <span class="product-card__title">{{ product.title }}</span>
+              <span class="product-card__price">{{ product.price | money }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">
+          {%- if paginate.previous -%}
+            <a class="pagination__link" href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>
+          {%- endif -%}
+          <span class="pagination__current">{{ 'general.pagination.page' | t: number: paginate.current_page, count: paginate.pages }}</span>
+          {%- if paginate.next -%}
+            <a class="pagination__link" href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- else -%}
+      <p class="collection__empty">{{ 'collections.general.empty' | t }}</p>
+    {%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

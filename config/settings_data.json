@@ -1,1 +1,12 @@
-
+{
+  "current": {
+    "color_text": "#1a1a1a",
+    "color_background": "#ffffff",
+    "color_button": "#1a1a1a",
+    "color_button_text": "#ffffff",
+    "page_width": "full",
+    "page_transition_enabled": false,
+    "transition_to_main_product": false,
+    "card_hover_effect": "none"
+  }
+}

@@ -1,0 +1,39 @@
+{%- liquid
+  assign footer_menu = section.settings.menu
+-%}
+
+<footer class="footer">
+  <div class="footer__inner page-width">
+    {%- if footer_menu != blank -%}
+      <nav aria-label="{{ 'general.navigation.footer' | t }}">
+        <ul class="footer__menu">
+          {%- for link in footer_menu.links -%}
+            <li>
+              <a href="{{ link.url }}" {% if link.current %}aria-current="page"{% endif %}>
+                {{- link.title -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="footer__bottom">
+      <small class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</small>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

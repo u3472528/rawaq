@@ -1,0 +1,66 @@
+{%- liquid
+  assign menu = section.settings.menu
+-%}
+
+<header id="header-component" class="header">
+  <div class="header__inner page-width">
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 240 | image_tag: loading: 'eager', widths: '120, 180, 240', alt: shop.name, class: 'header__logo-image' }}
+      {%- else -%}
+        <span>{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- if menu != blank -%}
+      <nav class="header__menu" aria-label="{{ 'general.navigation.main_navigation' | t }}">
+        <ul>
+          {%- for link in menu.links -%}
+            <li>
+              <a href="{{ link.url }}" {% if link.current %}aria-current="page"{% endif %}>
+                {{- link.title -}}
+              </a>
+              {%- if link.links != blank -%}
+                <ul class="header__submenu">
+                  {%- for child_link in link.links -%}
+                    <li>
+                      <a href="{{ child_link.url }}" {% if child_link.current %}aria-current="page"{% endif %}>
+                        {{- child_link.title -}}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="header__actions">
+      <a href="{{ routes.search_url }}">{{ 'general.search.title' | t }}</a>
+      <a href="{{ routes.cart_url }}" aria-label="{{ 'general.cart.title' | t }}">
+        {{ 'general.cart.title' | t }} ({{ cart.item_count }})
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

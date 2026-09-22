@@ -1,0 +1,49 @@
+<section class="main-list-collections page-width">
+  <h1>{{ 'collections.general.title' | t }}</h1>
+
+  {%- paginate collections by 12 -%}
+    {%- if collections.size > 0 -%}
+      <ul class="collection-grid">
+        {%- for collection in collections -%}
+          <li>
+            <a href="{{ collection.url }}" class="collection-card">
+              {%- if collection.featured_image -%}
+                {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', alt: collection.featured_image.alt | default: collection.title }}
+              {%- endif -%}
+              <span class="collection-card__title">{{ collection.title }}</span>
+              {%- if section.settings.show_total_products -%}
+                <span class="collection-card__count">{{ 'collections.general.products' | t: count: collection.products_count }}</span>
+              {%- endif -%}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">
+          {%- if paginate.previous -%}
+            <a class="pagination__link" href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>
+          {%- endif -%}
+          <span class="pagination__current">{{ 'general.pagination.page' | t: number: paginate.current_page, count: paginate.pages }}</span>
+          {%- if paginate.next -%}
+            <a class="pagination__link" href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "List of collections",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_total_products",
+      "label": "Show total products",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
