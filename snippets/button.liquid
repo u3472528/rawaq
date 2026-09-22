@@ -1,1 +1,22 @@
+{%- liquid
+  assign button_label = label | default: blank
+  assign button_href = href | default: blank
+  assign button_type = type | default: 'submit'
+  assign button_class = class | default: ''
+-%}
 
+{%- if button_label != blank -%}
+  {%- if button_href != blank -%}
+    <a
+      href="{{ button_href }}"
+      class="button {{ button_class }}"
+      {% if target != blank %}target="{{ target }}"{% endif %}
+    >
+      {{- button_label -}}
+    </a>
+  {%- else -%}
+    <button type="{{ button_type }}" class="button {{ button_class }}">
+      {{- button_label -}}
+    </button>
+  {%- endif -%}
+{%- endif -%}
