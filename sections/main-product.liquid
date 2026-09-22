@@ -1,0 +1,144 @@
+<section class="main-product page-width">
+  <div class="product__grid">
+    <div class="product__media">
+      {%- if product.media.size > 0 -%}
+        {%- for media in product.media -%}
+          {%- if media.media_type == 'image' -%}
+            {%- assign loading = 'lazy' -%}
+            {%- if forloop.first -%}
+              {%- assign loading = 'eager' -%}
+            {%- endif -%}
+            {{ media | image_url: width: 1200 | image_tag: loading: loading, widths: '400, 700, 1000, 1200', alt: media.alt | default: product.title }}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <div class="product__media-placeholder">{{ 'general.onboarding.product_image' | t }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="product__info">
+      {%- if section.settings.show_vendor and product.vendor != blank -%}
+        <p class="product__vendor">{{ product.vendor }}</p>
+      {%- endif -%}
+
+      <h1 class="product__title">{{ product.title }}</h1>
+
+      <div class="product__price" data-product-price>
+        {%- if product.compare_at_price > product.price -%}
+          <s class="product__price-compare" data-compare-price>{{ product.compare_at_price | money }}</s>
+        {%- endif -%}
+        <span class="product__price-final" data-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+      </div>
+
+      {%- form 'product', product, id: 'ProductForm', class: 'product-form' -%}
+        {%- if product.variants.size > 1 -%}
+          <div class="product-form__field">
+            <label for="VariantSelect-{{ section.id }}">{{ 'products.product.variant' | t }}</label>
+            <select id="VariantSelect-{{ section.id }}" name="id" data-variant-select>
+              {%- for variant in product.variants -%}
+                <option
+                  value="{{ variant.id }}"
+                  data-price="{{ variant.price | money }}"
+                  data-compare-price="{%- if variant.compare_at_price > variant.price -%}{{ variant.compare_at_price | money }}{%- endif -%}"
+                  {%- if variant == product.selected_or_first_available_variant %} selected{% endif -%}
+                  {%- unless variant.available %} disabled{% endunless -%}
+                >
+                  {{- variant.title }}
+                  {%- unless variant == product.selected_or_first_available_variant %} &ndash; {{ variant.price | money }}{% endunless -%}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- else -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {%- endif -%}
+
+        {%- if section.settings.show_quantity_selector -%}
+          <div class="product-form__field">
+            <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+            <input
+              type="number"
+              id="Quantity-{{ section.id }}"
+              name="quantity"
+              value="1"
+              min="1"
+              inputmode="numeric"
+            >
+          </div>
+        {%- endif -%}
+
+        <button
+          type="submit"
+          class="button"
+          data-add-to-cart
+          {%- unless product.selected_or_first_available_variant.available %} disabled{% endunless -%}
+        >
+          {%- if product.selected_or_first_available_variant.available -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </button>
+      {%- endform -%}
+
+      <div class="product__description rte">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const select = document.querySelector('[data-variant-select]');
+      if (!select) return;
+
+      const price = document.querySelector('[data-price]');
+      const comparePrice = document.querySelector('[data-compare-price]');
+      const button = document.querySelector('[data-add-to-cart]');
+      const addToCart = {{ 'products.product.add_to_cart' | json }};
+      const soldOut = {{ 'products.product.sold_out' | json }};
+
+      const updateVariant = function () {
+        const option = select.options[select.selectedIndex];
+        if (!option) return;
+
+        const available = !option.disabled;
+        if (price) price.textContent = option.dataset.price;
+        if (comparePrice) {
+          if (option.dataset.comparePrice) {
+            comparePrice.textContent = option.dataset.comparePrice;
+            comparePrice.style.display = '';
+          } else {
+            comparePrice.style.display = 'none';
+          }
+        }
+        if (button) {
+          button.disabled = !available;
+          button.textContent = available ? addToCart : soldOut;
+        }
+      };
+
+      select.addEventListener('change', updateVariant);
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity_selector",
+      "label": "Show quantity selector",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
