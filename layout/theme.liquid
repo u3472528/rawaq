@@ -7,6 +7,20 @@
   dir="{{ request.locale.direction | default: 'ltr' }}"
 >
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_background }}">
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -15,12 +29,25 @@
       >
     {%- endif -%}
 
+    <style>
+      :root {
+        --color-text: {{ settings.color_text }};
+        --color-background: {{ settings.color_background }};
+        --color-button: {{ settings.color_button }};
+        --color-button-text: {{ settings.color_button_text }};
+      }
+    </style>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
     {{ content_for_header }}
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
 
     <div class="page-wrapper">
+
+      {% sections 'header-group' %}
 
       <script>
         /**
@@ -140,10 +167,8 @@
         {{ content_for_layout }}
       </main>
 
-      <footer>
-      </footer>
+      {% sections 'footer-group' %}
     </div>
 
-    
   </body>
 </html>
