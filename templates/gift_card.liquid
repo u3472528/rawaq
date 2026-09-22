@@ -1,0 +1,66 @@
+{%- layout none -%}
+{%- liquid
+  assign gift_card_value = gift_card.balance | money
+-%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>{{ 'general.gift_cards.title' | t: shop: shop.name }}</title>
+    {{ content_for_header }}
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #1a1a1a;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 0.625rem 1.375rem;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: 0;
+        border-radius: 0.125rem;
+        font: inherit;
+        font-weight: 600;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="gift-card">
+      <h1 class="gift-card__shop">{{ shop.name }}</h1>
+
+      {%- if gift_card.expired -%}
+        <h2>{{ 'general.gift_cards.expired' | t }}</h2>
+        <p>{{ 'general.gift_cards.expired_subtext' | t }}</p>
+      {%- else -%}
+        {%- if gift_card.enabled -%}
+          <p class="gift-card__balance">{{ 'general.gift_cards.balance' | t: value: gift_card_value }}</p>
+          <p class="gift-card__code">{{ gift_card.code | format_code }}</p>
+          {% if gift_card.url %}
+            <a href="{{ gift_card.url }}" class="button">{{ 'general.gift_cards.redeem' | t }}</a>
+          {% endif %}
+        {%- else -%}
+          <h2>{{ 'general.gift_cards.disabled' | t }}</h2>
+          <p>{{ 'general.gift_cards.disabled_subtext' | t }}</p>
+        {%- endif -%}
+      {%- endif -%}
+
+      <p><a href="{{ shop.url }}">{{ 'general.gift_cards.shop_link' | t: shop: shop.name }}</a></p>
+    </main>
+  </body>
+</html>
