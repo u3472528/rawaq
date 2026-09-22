@@ -1,1 +1,21 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "color_text": "#1a1a1a",
+    "color_background": "#ffffff",
+    "color_button": "#1a1a1a",
+    "color_button_text": "#ffffff",
+    "page_width": "full",
+    "page_transition_enabled": false,
+    "transition_to_main_product": false,
+    "card_hover_effect": "none"
+  }
+}
