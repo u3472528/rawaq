@@ -71,32 +71,7 @@
         </span>
       {% endif %}
 
-    </div>
-
-    {% if section.settings.enable_close %}
-      <button
-        type="button"
-        class="announcement-component__close"
-        aria-label="Close announcement"
-        aria-controls="AnnouncementComponent-{{ section.id }}"
-      >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path
-            d="M3 3L13 13M13 3L3 13"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-        </svg>
-      </button>
-    {% endif %}
+    </div
 
   </div>
 </section>
@@ -219,42 +194,3 @@
     }
   }
 </style>
-
-{% if section.settings.enable_close %}
-  <script>
-    (() => {
-      const section = document.getElementById(
-        'AnnouncementComponent-{{ section.id }}'
-      );
-
-      if (!section) return;
-
-      const closeButton = section.querySelector(
-        '.announcement-component__close'
-      );
-
-      if (!closeButton) return;
-
-      const storageKey = 'announcement-dismissed-{{ section.id }}';
-
-      try {
-        if (localStorage.getItem(storageKey) === 'true') {
-          section.classList.add('is-hidden');
-          return;
-        }
-      } catch (error) {
-        // Ignore localStorage errors.
-      }
-
-      closeButton.addEventListener('click', () => {
-        section.classList.add('is-hidden');
-
-        try {
-          localStorage.setItem(storageKey, 'true');
-        } catch (error) {
-          // Ignore localStorage errors.
-        }
-      });
-    })();
-  </script>
-{% endif %}
