@@ -29,14 +29,14 @@
       "id": "announcement_text",
       "label": "Announcement Text",
       "default": "Free shipping on orders over $50",
-      "visible_if": "{{ section.settings.ann_type == 'announcement' }}"
+      "visible_if": "{{ block.settings.ann_type == 'announcement' }}"
     },
 
     {
       "type": "url",
       "id": "announcement_link",
       "label": "Announcement Link",
-      "visible_if": "{{ section.settings.ann_type == 'announcement' }}"
+      "visible_if": "{{ block.settings.ann_type == 'announcement' }}"
     },
 
     {
@@ -44,14 +44,14 @@
       "id": "link_text",
       "label": "Link Text",
       "default": "Learn More",
-      "visible_if": "{{ section.settings.ann_type == 'link' }}"
+      "visible_if": "{{ block.settings.ann_type == 'link' }}"
     },
 
     {
       "type": "url",
       "id": "link_url",
       "label": "Link URL",
-      "visible_if": "{{ section.settings.ann_type == 'link' }}"
+      "visible_if": "{{ block.settings.ann_type == 'link' }}"
     },
 
     {
@@ -89,14 +89,14 @@
         }
       ],
       "default": "instagram",
-      "visible_if": "{{ section.settings.ann_type == 'social_link' }}"
+      "visible_if": "{{ block.settings.ann_type == 'social_link' }}"
     },
 
     {
       "type": "url",
       "id": "social_url",
       "label": "Social URL",
-      "visible_if": "{{ section.settings.ann_type == 'social_link' }}"
+      "visible_if": "{{ block.settings.ann_type == 'social_link' }}"
     },
 
     {
@@ -104,7 +104,7 @@
       "id": "social_text",
       "label": "Social Link Text",
       "default": "Follow us",
-      "visible_if": "{{ section.settings.ann_type == 'social_link' }}"
+      "visible_if": "{{ block.settings.ann_type == 'social_link' }}"
     },
 
     {
