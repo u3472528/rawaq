@@ -1,24 +1,141 @@
 {% schema %}
-  {
-    "name": "Announcement Component",
-    "settings": [
+{
+  "name": "Announcement Component",
+  "settings": [
+    {
+      "type": "select",
+      "id": "ann_type",
+      "label": "Announcement Type",
+      "options": [
         {
-            "type": "select",
-            "id": "ann_type",
-            "label": "type",
-            "options": [
-                {"value": "announcement","label": "Announcement"},
-                {"value": "link","label": "Link"},
-                {"value": "social_link","label": "Social Link"}
-            ]
+          "value": "announcement",
+          "label": "Announcement"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        },
+        {
+          "value": "social_link",
+          "label": "Social Link"
         }
-    ],
-    "presets": [
-      {
-        "name": "Announcement Component",
-        "settings": {
+      ],
+      "default": "announcement"
+    },
+
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Free shipping on orders over $50",
+      "visible_if": "{{ section.settings.ann_type == 'announcement' }}"
+    },
+
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement Link",
+      "visible_if": "{{ section.settings.ann_type == 'announcement' }}"
+    },
+
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Learn More",
+      "visible_if": "{{ section.settings.ann_type == 'link' }}"
+    },
+
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "visible_if": "{{ section.settings.ann_type == 'link' }}"
+    },
+
+    {
+      "type": "select",
+      "id": "social_platform",
+      "label": "Social Platform",
+      "options": [
+        {
+          "value": "facebook",
+          "label": "Facebook"
+        },
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "twitter",
+          "label": "X / Twitter"
+        },
+        {
+          "value": "youtube",
+          "label": "YouTube"
+        },
+        {
+          "value": "tiktok",
+          "label": "TikTok"
+        },
+        {
+          "value": "pinterest",
+          "label": "Pinterest"
+        },
+        {
+          "value": "linkedin",
+          "label": "LinkedIn"
         }
+      ],
+      "default": "instagram",
+      "visible_if": "{{ section.settings.ann_type == 'social_link' }}"
+    },
+
+    {
+      "type": "url",
+      "id": "social_url",
+      "label": "Social URL",
+      "visible_if": "{{ section.settings.ann_type == 'social_link' }}"
+    },
+
+    {
+      "type": "text",
+      "id": "social_text",
+      "label": "Social Link Text",
+      "default": "Follow us",
+      "visible_if": "{{ section.settings.ann_type == 'social_link' }}"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "enable_close",
+      "label": "Enable Close Button",
+      "default": true
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Announcement Component",
+      "settings": {
+        "ann_type": "announcement",
+        "announcement_text": "Free shipping on orders over $50"
       }
-    ]
-  }
+    }
+  ]
+}
 {% endschema %}
