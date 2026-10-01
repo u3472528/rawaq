@@ -1,0 +1,260 @@
+{% liquid
+  assign type = section.settings.ann_type
+
+  case type
+    when 'announcement'
+      assign content_text = section.settings.announcement_text
+      assign content_url = section.settings.announcement_link
+
+    when 'link'
+      assign content_text = section.settings.link_text
+      assign content_url = section.settings.link_url
+
+    when 'social_link'
+      assign content_text = section.settings.social_text
+      assign content_url = section.settings.social_url
+  endcase
+%}
+
+<section
+  id="AnnouncementComponent-{{ section.id }}"
+  class="announcement-component"
+  data-section-id="{{ section.id }}"
+  data-enable-close="{{ section.settings.enable_close }}"
+  style="
+    --announcement-bg: {{ section.settings.background_color }};
+    --announcement-color: {{ section.settings.text_color }};
+  "
+  aria-label="Announcement"
+>
+  <div class="announcement-component__inner">
+
+    <div class="announcement-component__content">
+
+      {% if content_url != blank %}
+        <a
+          class="announcement-component__link"
+          href="{{ content_url }}"
+          {% if type == 'social_link' %}
+            target="_blank"
+            rel="noopener noreferrer"
+          {% endif %}
+        >
+          {% if type == 'social_link' %}
+            <span class="announcement-component__social-icon" aria-hidden="true">
+              {% case section.settings.social_platform %}
+                {% when 'facebook' %}
+                  f
+                {% when 'instagram' %}
+                  ◎
+                {% when 'twitter' %}
+                  𝕏
+                {% when 'youtube' %}
+                  ▶
+                {% when 'tiktok' %}
+                  ♪
+                {% when 'pinterest' %}
+                  p
+                {% when 'linkedin' %}
+                  in
+              {% endcase %}
+            </span>
+          {% endif %}
+
+          <span class="announcement-component__text">
+            {{ content_text | escape }}
+          </span>
+        </a>
+      {% else %}
+        <span class="announcement-component__text">
+          {{ content_text | escape }}
+        </span>
+      {% endif %}
+
+    </div>
+
+    {% if section.settings.enable_close %}
+      <button
+        type="button"
+        class="announcement-component__close"
+        aria-label="Close announcement"
+        aria-controls="AnnouncementComponent-{{ section.id }}"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M3 3L13 13M13 3L3 13"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  #AnnouncementComponent-{{ section.id }} {
+    --announcement-bg: {{ section.settings.background_color }};
+    --announcement-color: {{ section.settings.text_color }};
+
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--announcement-bg);
+    color: var(--announcement-color);
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 48px;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__link:hover {
+    opacity: 0.8;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: inherit;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__close {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition:
+      background-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__close:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  #AnnouncementComponent-{{ section.id }} .announcement-component__close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  #AnnouncementComponent-{{ section.id }}.is-hidden {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    #AnnouncementComponent-{{ section.id }} .announcement-component__inner {
+      min-height: 42px;
+      padding: 9px 48px 9px 16px;
+    }
+
+    #AnnouncementComponent-{{ section.id }} .announcement-component__text {
+      font-size: 13px;
+    }
+
+    #AnnouncementComponent-{{ section.id }} .announcement-component__close {
+      right: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #AnnouncementComponent-{{ section.id }} .announcement-component__link,
+    #AnnouncementComponent-{{ section.id }} .announcement-component__close {
+      transition: none;
+    }
+  }
+</style>
+
+{% if section.settings.enable_close %}
+  <script>
+    (() => {
+      const section = document.getElementById(
+        'AnnouncementComponent-{{ section.id }}'
+      );
+
+      if (!section) return;
+
+      const closeButton = section.querySelector(
+        '.announcement-component__close'
+      );
+
+      if (!closeButton) return;
+
+      const storageKey = 'announcement-dismissed-{{ section.id }}';
+
+      try {
+        if (localStorage.getItem(storageKey) === 'true') {
+          section.classList.add('is-hidden');
+          return;
+        }
+      } catch (error) {
+        // Ignore localStorage errors.
+      }
+
+      closeButton.addEventListener('click', () => {
+        section.classList.add('is-hidden');
+
+        try {
+          localStorage.setItem(storageKey, 'true');
+        } catch (error) {
+          // Ignore localStorage errors.
+        }
+      });
+    })();
+  </script>
+{% endif %}
