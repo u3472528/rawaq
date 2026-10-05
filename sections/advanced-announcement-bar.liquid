@@ -1,22 +1,277 @@
-{% content_for 'blocks' %}
+{%- assign links = section.settings.links -%}
+
+<div class="ad-announcement-bar ad-announcement-bar-{{ section.id }}" style="
+    --bg: {{ section.settings.bg }};
+    --text: {{ section.settings.text_color }};
+    --padd_vertical: {{ section.settings.padd_vertical }}px;
+    --padd_horizontal: {{ section.settings.padd_horizontal }}px;
+    --font-size: 1.5rem;
+  ">
+  <div class="ad-announcement-inner">
+
+    {%- if links != blank -%}
+      <div class="links">
+        <ul>
+          {%- for link in links.links -%}
+            <li class="link-{{ forloop.index }}">
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="announcements" data-announcements>
+
+        {%- for announcement in section.blocks -%}
+          <div
+            class="announcement{% if forloop.first %} is-active{% endif %}"
+            data-announcement
+            {{ announcement.shopify_attributes }}>
+            {%- if announcement.settings.text_url != blank -%}
+              <a href="{{ announcement.settings.text_url }}">
+                {{ announcement.settings.text }}
+              </a>
+            {%- else -%}
+              <span>{{ announcement.settings.text }}</span>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+      </div>
+    {%- endif -%}
+
+    <div class="social-links">
+      
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .ad-announcement-bar-{{ section.id }} {
+    background: var(--bg);
+    color: var(--text);
+    padding-block: var(--padd_vertical);
+    padding-inline: var(--padd_horizontal);
+    font-size: var(--font-size);
+    width: 100%;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .ad-announcement-inner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .links {
+    flex: 0 0 auto;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .links ul {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .links a {
+    color: var(--text);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .ad-announcement-bar-{{ section.id }}.links a:hover {
+    opacity: 0.7;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .announcements {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .announcement {
+    display: none;
+    width: 100%;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .announcement.is-active {
+    display: block;
+  }
+
+  .ad-announcement-bar-{{ section.id }}
+  .announcement a
+  , .ad-announcement-bar-{{ section.id }}
+  .announcement span {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .ad-announcement-bar-{{ section.id }}.announcement a:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ad-announcement-bar-{{ section.id }} {
+      --font-size: 1.3rem;
+    }
+
+    .ad-announcement-bar-{{ section.id }}
+    .ad-announcement-inner {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ad-announcement-bar-{{ section.id }}
+    .links {
+      width: 100%;
+    }
+
+    .ad-announcement-bar-{{ section.id }}
+    .links ul {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 15px;
+    }
+
+    .ad-announcement-bar-{{ section.id }}
+    .announcements {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const announcementBars = document.querySelectorAll(
+      '.ad-announcement-bar-{{ section.id }}'
+    );
+  
+    announcementBars.forEach(function (bar) {
+      const announcements = bar.querySelectorAll('[data-announcement]');
+  
+      if (announcements.length <= 1) return;
+  
+      let current = 0;
+  
+      setInterval(function () {
+        announcements[current].classList.remove('is-active');
+  
+        current = (current + 1) % announcements.length;
+  
+        announcements[current].classList.add('is-active');
+      }, 4000);
+    });
+  });
+</script>
 
 {% schema %}
   {
-    "name": "Advance Announcement Bar",
+    "name": "Advance Announcement",
     "settings": [
-              
+      {
+        "type": "header",
+        "content": "Links & Social Media"
+      },
+      {
+        "type": "link_list",
+        "id": "links",
+        "label": "Links"
+      },
+      {
+        "type": "select",
+        "id": "social_icons",
+        "label": "Social Media",
+        "options": [
+          {
+            "value": "hide",
+            "label": "Hide"
+          }, {
+            "value": "show",
+            "label": "Show"
+          }
+        ],
+        "default": "hide"
+      },
+      {
+        "type": "header",
+        "content": "Appearance and Order"
+      }, {
+        "type": "color",
+        "id": "bg",
+        "label": "Background",
+        "alpha": true
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "alpha": true
+      }, {
+        "type": "header",
+        "content": "Spacing"
+      }, {
+        "type": "range",
+        "id": "padd_vertical",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "label": "Vertical Padding",
+        "default": 10
+      }, {
+        "type": "range",
+        "id": "padd_horizontal",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "label": "Horizontal Padding",
+        "default": 10
+      }
     ],
     "blocks": [
-        {"type": "ad-announcement-bar-component"}
+      {
+        "name": "Announcement",
+        "type": "announcement",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Announcement"
+          }, {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+          }, {
+            "type": "url",
+            "id": "text_url",
+            "label": "URL"
+          }
+        ]
+      }
     ],
-  "enabled_on": {
-    "groups": ["header"]
-  },
+    "enabled_on": {
+      "groups": ["header"]
+    },
     "presets": [
       {
-        "name": "Advance Announcement Bar",
-        "settings": {
-        }
+        "name": "Advance Announcement"
       }
     ]
   }
