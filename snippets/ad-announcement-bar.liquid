@@ -1,29 +1,29 @@
 {% liquid
-  assign type = section.settings.ann_type
+  assign type = block.settings.ann_type
 
   case type
     when 'announcement'
-      assign content_text = section.settings.announcement_text
-      assign content_url = section.settings.announcement_link
+      assign content_text = block.settings.announcement_text
+      assign content_url = block.settings.announcement_link
 
     when 'link'
-      assign content_text = section.settings.link_text
-      assign content_url = section.settings.link_url
+      assign content_text = block.settings.link_text
+      assign content_url = block.settings.link_url
 
     when 'social_link'
-      assign content_text = section.settings.social_text
-      assign content_url = section.settings.social_url
+      assign content_text = block.settings.social_text
+      assign content_url = block.settings.social_url
   endcase
 %}
 
 <section
-  id="AnnouncementComponent-{{ section.id }}"
+  id="AnnouncementComponent-{{ block.id }}"
   class="announcement-component"
-  data-section-id="{{ section.id }}"
-  data-enable-close="{{ section.settings.enable_close }}"
+  data-section-id="{{ block.id }}"
+  data-enable-close="{{ block.settings.enable_close }}"
   style="
-    --announcement-bg: {{ section.settings.background_color }};
-    --announcement-color: {{ section.settings.text_color }};
+    --announcement-bg: {{ block.settings.background_color }};
+    --announcement-color: {{ block.settings.text_color }};
   "
   aria-label="Announcement"
 >
@@ -42,7 +42,7 @@
         >
           {% if type == 'social_link' %}
             <span class="announcement-component__social-icon" aria-hidden="true">
-              {% case section.settings.social_platform %}
+              {% case block.settings.social_platform %}
                 {% when 'facebook' %}
                   f
                 {% when 'instagram' %}
@@ -71,15 +71,14 @@
         </span>
       {% endif %}
 
-    </div
-
+    </div>
   </div>
 </section>
 
 <style>
-  #AnnouncementComponent-{{ section.id }} {
-    --announcement-bg: {{ section.settings.background_color }};
-    --announcement-color: {{ section.settings.text_color }};
+  #AnnouncementComponent-{{ block.id }} {
+    --announcement-bg: {{ block.settings.background_color }};
+    --announcement-color: {{ block.settings.text_color }};
 
     position: relative;
     z-index: 10;
@@ -88,7 +87,7 @@
     color: var(--announcement-color);
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__inner {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__inner {
     position: relative;
     display: flex;
     align-items: center;
@@ -98,7 +97,7 @@
     padding: 10px 48px;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__content {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,7 +105,7 @@
     text-align: center;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__link {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -116,11 +115,11 @@
     transition: opacity 0.2s ease;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__link:hover {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__link:hover {
     opacity: 0.8;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__text {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__text {
     margin: 0;
     font-size: 14px;
     line-height: 1.4;
@@ -128,7 +127,7 @@
     color: inherit;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__social-icon {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__social-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -138,7 +137,7 @@
     font-weight: 600;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__close {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__close {
     position: absolute;
     top: 50%;
     right: 16px;
@@ -159,37 +158,37 @@
       opacity 0.2s ease;
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__close:hover {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__close:hover {
     background-color: rgba(255, 255, 255, 0.12);
   }
 
-  #AnnouncementComponent-{{ section.id }} .announcement-component__close:focus-visible {
+  #AnnouncementComponent-{{ block.id }} .announcement-component__close:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 2px;
   }
 
-  #AnnouncementComponent-{{ section.id }}.is-hidden {
+  #AnnouncementComponent-{{ block.id }}.is-hidden {
     display: none;
   }
 
   @media screen and (max-width: 749px) {
-    #AnnouncementComponent-{{ section.id }} .announcement-component__inner {
+    #AnnouncementComponent-{{ block.id }} .announcement-component__inner {
       min-height: 42px;
       padding: 9px 48px 9px 16px;
     }
 
-    #AnnouncementComponent-{{ section.id }} .announcement-component__text {
+    #AnnouncementComponent-{{ block.id }} .announcement-component__text {
       font-size: 13px;
     }
 
-    #AnnouncementComponent-{{ section.id }} .announcement-component__close {
+    #AnnouncementComponent-{{ block.id }} .announcement-component__close {
       right: 8px;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #AnnouncementComponent-{{ section.id }} .announcement-component__link,
-    #AnnouncementComponent-{{ section.id }} .announcement-component__close {
+    #AnnouncementComponent-{{ block.id }} .announcement-component__link,
+    #AnnouncementComponent-{{ block.id }} .announcement-component__close {
       transition: none;
     }
   }
