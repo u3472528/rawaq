@@ -1,14 +1,16 @@
 {%- assign links = section.settings.links -%}
 
-<div class="ad-announcement-bar ad-announcement-bar-{{ section.id }}" style="
+<div
+  class="ad-announcement-bar ad-announcement-bar-{{ section.id }}"
+  style="
     --bg: {{ section.settings.bg }};
     --text: {{ section.settings.text_color }};
     --padd_vertical: {{ section.settings.padd_vertical }}px;
     --padd_horizontal: {{ section.settings.padd_horizontal }}px;
     --font-size: 1.5rem;
-  ">
+  "
+>
   <div class="ad-announcement-inner">
-
     {%- if links != blank -%}
       <div class="links">
         <ul>
@@ -23,13 +25,11 @@
       </div>
     {%- endif -%}
 
-   {% content_for 'block' ,type: 'announcement' , id:"announcement" %}
+    {% content_for 'block', type: 'announcement', id: 'announcement' %}
 
     <div class="social-links">
-    {% content_for 'block' ,type: 'social-links' , id:"social" %}
-      
+      {% content_for 'block', type: 'social-links', id: 'social' %}
     </div>
-
   </div>
 </div>
 
@@ -142,22 +142,20 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const announcementBars = document.querySelectorAll(
-      '.ad-announcement-bar-{{ section.id }}'
-    );
-  
+    const announcementBars = document.querySelectorAll('.ad-announcement-bar-{{ section.id }}');
+
     announcementBars.forEach(function (bar) {
       const announcements = bar.querySelectorAll('[data-announcement]');
-  
+
       if (announcements.length <= 1) return;
-  
+
       let current = 0;
-  
+
       setInterval(function () {
         announcements[current].classList.remove('is-active');
-  
+
         current = (current + 1) % announcements.length;
-  
+
         announcements[current].classList.add('is-active');
       }, 4000);
     });
@@ -165,84 +163,90 @@
 </script>
 
 {% schema %}
-  {
-    "name": "Advance Announcement",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Links & Social Media"
-      },
-      {
-        "type": "link_list",
-        "id": "links",
-        "label": "Links"
-      },
-      {
-        "type": "select",
-        "id": "social_icons",
-        "label": "Social Media",
-        "options": [
-          {
-            "value": "hide",
-            "label": "Hide"
-          }, {
-            "value": "show",
-            "label": "Show"
-          }
-        ],
-        "default": "hide"
-      },
-      {
-        "type": "header",
-        "content": "Appearance and Order"
-      }, {
-        "type": "color",
-        "id": "bg",
-        "label": "Background",
-        "alpha": true
-      }, {
-        "type": "color",
-        "id": "text_color",
-        "label": "Text Color",
-        "alpha": true
-      }, {
-        "type": "header",
-        "content": "Spacing"
-      }, {
-        "type": "range",
-        "id": "padd_vertical",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "unit": "px",
-        "label": "Vertical Padding",
-        "default": 10
-      }, {
-        "type": "range",
-        "id": "padd_horizontal",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "unit": "px",
-        "label": "Horizontal Padding",
-        "default": 10
-      }
-    ],
-    "blocks": [
-      {
-        "type": "announcement"
-      },
-      {
-        "type": "social-links"
-      }
-    ],
-    "enabled_on": {
-      "groups": ["header"]
+{
+  "name": "Advance Announcement",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Links & Social Media"
     },
-    "presets": [
-      {
-        "name": "Advance Announcement"
-      }
-    ]
-  }
+    {
+      "type": "link_list",
+      "id": "links",
+      "label": "Links"
+    },
+    {
+      "type": "select",
+      "id": "social_icons",
+      "label": "Social Media",
+      "options": [
+        {
+          "value": "hide",
+          "label": "Hide"
+        },
+        {
+          "value": "show",
+          "label": "Show"
+        }
+      ],
+      "default": "hide"
+    },
+    {
+      "type": "header",
+      "content": "Appearance and Order"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background",
+      "alpha": true
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "alpha": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padd_vertical",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padd_horizontal",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal Padding",
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement"
+    },
+    {
+      "type": "social-links"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "presets": [
+    {
+      "name": "Advance Announcement"
+    }
+  ]
+}
 {% endschema %}
