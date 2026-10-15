@@ -1,5 +1,6 @@
 <div class="custom-header custom-header-{{ section.id }}">
   <button
+    type="button"
     class="menu-drawer-button is-show"
     aria-label="Toggle menu"
     aria-expanded="false"
@@ -7,41 +8,64 @@
     <span class="hamburger-line"></span>
   </button>
 </div>
+
 <style>
-  .menu-drawer-button .hamburger-line {
-      position: absolute;
-      top: 50%;
-      left: 0.2rem;
-      margin-top: -0.1rem;
-      width: 2rem;
-      height: 0.2rem;
-      background: rgb(var(--color-foreground));
-      transition: transform 0.2s;
-      border-radius: 1rem;
+  .custom-header-{{ section.id }} .menu-drawer-button {
+    position: relative;
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: rgb(var(--color-foreground));
   }
-  .menu-drawer-button .hamburger-line::before {
+
+  .custom-header-{{ section.id }} .hamburger-line {
+    position: absolute;
+    top: 50%;
+    left: 0.25rem;
+    display: block;
+    width: 2rem;
+    height: 0.2rem;
+    margin-top: -0.1rem;
+    background-color: rgb(var(--color-foreground));
+    border-radius: 1rem;
+  }
+
+  .custom-header-{{ section.id }} .hamburger-line::before,
+  .custom-header-{{ section.id }} .hamburger-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 0.2rem;
+    background-color: rgb(var(--color-foreground));
+    border-radius: 1rem;
+  }
+
+  .custom-header-{{ section.id }} .hamburger-line::before {
     top: -0.7rem;
-    transition: top 0.2s 0.22s, opacity 0.2s, width 0.2s;
   }
-  .menu-drawer-button .hamburger-line::after {
+
+  .custom-header-{{ section.id }} .hamburger-line::after {
     bottom: -0.7rem;
-    transition: bottom 0.2s 0.22s, transform 0.2s, width 0.2s;
-    }
-  .menu-drawer-button .hamburger-line::after, .menu-drawer-button .hamburger-line::before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 0.2rem;
-      background: rgb(var(--color-foreground));
-      border-radius: 1rem;
   }
 </style>
+
 {% schema %}
 {
   "name": "Custom Header",
   "settings": [],
-  "enabled_on": { "groups": ["header"] },
-  "presets": [{ "name": "Custom Header" }]
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
 }
 {% endschema %}
