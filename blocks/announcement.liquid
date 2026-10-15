@@ -1,0 +1,39 @@
+  <div class="announcements" data-announcements>
+    {%- for announcement in section.blocks -%}
+      <div
+        class="announcement{% if forloop.first %} is-active{% endif %}"
+        data-announcement
+        {{ announcement.shopify_attributes }}
+      >
+        {%- if announcement.settings.text_url != blank -%}
+          <a href="{{ announcement.settings.text_url }}">
+            {{ announcement.settings.text }}
+          </a>
+        {%- else -%}
+          <span>{{ announcement.settings.text }}</span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+{% schema %}
+{
+  "name": "Announcement",
+
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "text_url",
+      "label": "URL"
+    }
+  ]
+}
+{% endschema %}
