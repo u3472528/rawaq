@@ -91,6 +91,7 @@
           "blocks": {}
         }
       },
+      "disabled": true,
       "settings": {
         "logo_position": "left",
         "menu_position": "left",
@@ -135,10 +136,16 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
+    },
+    "custom_header_39rTjW": {
+      "type": "custom-header",
+      "name": "Custom Header",
+      "settings": {}
     }
   },
   "order": [
     "advanced_announcement_bar_yptUxB",
-    "header_section"
+    "header_section",
+    "custom_header_39rTjW"
   ]
 }
