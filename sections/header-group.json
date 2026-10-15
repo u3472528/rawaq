@@ -14,43 +14,41 @@
     "advanced_announcement_bar_yptUxB": {
       "type": "advanced-announcement-bar",
       "blocks": {
-        "announcement": {
+        "announcement_EzDktH": {
           "type": "announcement",
-          "static": true,
           "settings": {
-            "text": "Enjoy Your Shopping ,Without Fear",
+            "text": "Welcome to our store 1",
             "text_url": ""
-          },
-          "blocks": {}
+          }
         },
-        "social": {
-          "type": "social-links",
-          "static": true,
+        "announcement_Eifi9F": {
+          "type": "announcement",
           "settings": {
-            "icon_color": "",
-            "facebook_url": "",
-            "instagram_url": "",
-            "youtube_url": "",
-            "tiktok_url": "",
-            "twitter_url": "",
-            "threads_url": "",
-            "linkedin_url": "",
-            "bluesky_url": "",
-            "snapchat_url": "",
-            "pinterest_url": "",
-            "tumblr_url": "",
-            "vimeo_url": "",
-            "custom_url": ""
-          },
-          "blocks": {}
+            "text": "Welcome to our store 2",
+            "text_url": ""
+          }
+        },
+        "announcement_znHJeb": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store 3",
+            "text_url": ""
+          }
         }
       },
+      "block_order": [
+        "announcement_EzDktH",
+        "announcement_Eifi9F",
+        "announcement_znHJeb"
+      ],
       "name": "Advance Announcement",
       "settings": {
         "links": "left-announcement-bar",
         "social_icons": "show",
         "bg": "#1d349a",
         "text_color": "#fdfdfd",
+        "font_size": 15,
+        "mobile_font_size": 13,
         "padd_vertical": 10,
         "padd_horizontal": 10
       }
