@@ -1,4 +1,3 @@
-
 {%- assign links = section.settings.links -%}
 
 <div
@@ -12,7 +11,6 @@
   "
 >
   <div class="ad-announcement-inner">
-
     {%- if links != blank -%}
       <nav class="links" aria-label="Announcement navigation">
         <ul>
@@ -59,35 +57,39 @@
       <div class="social-links">
         {%- if settings.facebook_link != blank -%}
           <a href="{{ settings.facebook_link }}" aria-label="Facebook">
-            Facebook
+            {{ 'facebook.svg' | inline_asset_content }}
+            <span class="social_media_label hidden">Facebook</span>
           </a>
         {%- endif -%}
 
         {%- if settings.instagram_link != blank -%}
           <a href="{{ settings.instagram_link }}" aria-label="Instagram">
-            Instagram
+            {{ 'facebook.svg' | inline_asset_content }}
+            <span class="social_media_label hidden">Instagram</span>
           </a>
         {%- endif -%}
 
         {%- if settings.tiktok_link != blank -%}
           <a href="{{ settings.tiktok_link }}" aria-label="TikTok">
-            TikTok
+            {{ 'facebook.svg' | inline_asset_content }}
+            <span class="social_media_label hidden">TikTok</span>
           </a>
         {%- endif -%}
 
         {%- if settings.youtube_link != blank -%}
           <a href="{{ settings.youtube_link }}" aria-label="YouTube">
-            YouTube
+            {{ 'facebook.svg' | inline_asset_content }}
+            <span class="social_media_label hidden">YouTube</span>
           </a>
         {%- endif -%}
         {%- if settings.pinterest_link != blank -%}
           <a href="{{ settings.pinterest_link }}" aria-label="YouTube">
-            Pinterest
+            {{ 'pinterest.svg' | inline_asset_content }}
+            <span class="social_media_label hidden">Pinterest</span>
           </a>
         {%- endif -%}
       </div>
     {%- endif -%}
-
   </div>
 </div>
 
