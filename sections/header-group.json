@@ -17,13 +17,21 @@
         "announcement_tpKDnE": {
           "type": "announcement",
           "settings": {
-            "text": "Worried to buy online ?",
+            "text": "Worried to buy online ? 🛒",
+            "text_url": ""
+          }
+        },
+        "announcement_WeWkcD": {
+          "type": "announcement",
+          "settings": {
+            "text": "We Make Your Choice , Valuable ! ✨",
             "text_url": ""
           }
         }
       },
       "block_order": [
-        "announcement_tpKDnE"
+        "announcement_tpKDnE",
+        "announcement_WeWkcD"
       ],
       "name": "Advance Announcement",
       "settings": {
