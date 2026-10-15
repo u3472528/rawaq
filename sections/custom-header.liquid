@@ -1,3 +1,4 @@
+
 <div class="custom-header custom-header-{{ section.id }}">
   <button
     type="button"
@@ -5,33 +6,42 @@
     aria-label="Toggle menu"
     aria-expanded="false"
   >
-    <span class="hamburger-line" style="--color-foreground:black;"></span>
+    <span class="hamburger-line"></span>
   </button>
 </div>
 
 <style>
+  .custom-header-{{ section.id }} {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
   .custom-header-{{ section.id }} .menu-drawer-button {
     position: relative;
     display: inline-block;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 40px;
+    height: 40px;
     padding: 0;
+    margin: 0;
     border: none;
     background: transparent;
     cursor: pointer;
-    color: rgb(var(--color-foreground));
+    color: #000;
+    visibility: visible;
+    opacity: 1;
   }
 
   .custom-header-{{ section.id }} .hamburger-line {
     position: absolute;
     top: 50%;
-    left: 0.25rem;
+    left: 4px;
     display: block;
-    width: 2rem;
-    height: 0.2rem;
-    margin-top: -0.1rem;
-    background-color: rgb(var(--color-foreground));
-    border-radius: 1rem;
+    width: 32px;
+    height: 3px;
+    transform: translateY(-50%);
+    background-color: #000;
+    border-radius: 2px;
   }
 
   .custom-header-{{ section.id }} .hamburger-line::before,
@@ -40,18 +50,18 @@
     position: absolute;
     left: 0;
     display: block;
-    width: 100%;
-    height: 0.2rem;
-    background-color: rgb(var(--color-foreground));
-    border-radius: 1rem;
+    width: 32px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
   }
 
   .custom-header-{{ section.id }} .hamburger-line::before {
-    top: -0.7rem;
+    top: -9px;
   }
 
   .custom-header-{{ section.id }} .hamburger-line::after {
-    bottom: -0.7rem;
+    top: 9px;
   }
 </style>
 
