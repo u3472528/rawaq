@@ -13,6 +13,18 @@
   "sections": {
     "advanced_announcement_bar_yptUxB": {
       "type": "advanced-announcement-bar",
+      "blocks": {
+        "announcement_tpKDnE": {
+          "type": "announcement",
+          "settings": {
+            "text": "Worried to buy online ?",
+            "text_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_tpKDnE"
+      ],
       "name": "Advance Announcement",
       "settings": {
         "links": "left-announcement-bar",
