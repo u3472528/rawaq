@@ -1,3 +1,4 @@
+
 {%- assign links = section.settings.links -%}
 
 <div
@@ -7,29 +8,81 @@
     --text: {{ section.settings.text_color }};
     --padd_vertical: {{ section.settings.padd_vertical }}px;
     --padd_horizontal: {{ section.settings.padd_horizontal }}px;
-    --font-size: 1.5rem;
+    --font-size: {{ section.settings.font_size }}px;
   "
 >
   <div class="ad-announcement-inner">
+
     {%- if links != blank -%}
-      <div class="links">
+      <nav class="links" aria-label="Announcement navigation">
         <ul>
           {%- for link in links.links -%}
-            <li class="link-{{ forloop.index }}">
-              <a href="{{ link.url }}">
-                {{ link.title }}
-              </a>
+            <li>
+              <a href="{{ link.url }}">{{ link.title | escape }}</a>
             </li>
           {%- endfor -%}
         </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="announcements" aria-live="polite">
+      {%- assign announcement_count = 0 -%}
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'announcement' -%}
+          <div
+            class="announcement{% if announcement_count == 0 %} is-active{% endif %}"
+            data-announcement
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.text_url != blank -%}
+              <a href="{{ block.settings.text_url }}">
+                {{ block.settings.text | escape }}
+              </a>
+            {%- else -%}
+              <span>{{ block.settings.text | escape }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- assign announcement_count = announcement_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if announcement_count == 0 -%}
+        <div class="announcement is-active">
+          <span>Add an announcement in the theme editor.</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.social_icons == 'show' -%}
+      <div class="social-links">
+        {%- if settings.social_facebook_link != blank -%}
+          <a href="{{ settings.social_facebook_link }}" aria-label="Facebook">
+            Facebook
+          </a>
+        {%- endif -%}
+
+        {%- if settings.social_instagram_link != blank -%}
+          <a href="{{ settings.social_instagram_link }}" aria-label="Instagram">
+            Instagram
+          </a>
+        {%- endif -%}
+
+        {%- if settings.social_tiktok_link != blank -%}
+          <a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">
+            TikTok
+          </a>
+        {%- endif -%}
+
+        {%- if settings.social_youtube_link != blank -%}
+          <a href="{{ settings.social_youtube_link }}" aria-label="YouTube">
+            YouTube
+          </a>
+        {%- endif -%}
       </div>
     {%- endif -%}
 
-    {% content_for 'block', type: 'announcement', id: 'announcement' %}
-
-    <div class="social-links">
-      {% content_for 'block', type: 'social-links', id: 'social' %}
-    </div>
   </div>
 </div>
 
@@ -37,14 +90,13 @@
   .ad-announcement-bar-{{ section.id }} {
     background: var(--bg);
     color: var(--text);
-    padding-block: var(--padd_vertical);
-    padding-inline: var(--padd_horizontal);
+    padding: var(--padd_vertical) var(--padd_horizontal);
     font-size: var(--font-size);
     width: 100%;
+    box-sizing: border-box;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .ad-announcement-inner {
+  .ad-announcement-bar-{{ section.id }} .ad-announcement-inner {
     width: 100%;
     display: flex;
     align-items: center;
@@ -52,114 +104,140 @@
     gap: 20px;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .links {
+  .ad-announcement-bar-{{ section.id }} .links {
     flex: 0 0 auto;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .links ul {
+  .ad-announcement-bar-{{ section.id }} .links ul {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 18px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .links a {
+  .ad-announcement-bar-{{ section.id }} a {
     color: var(--text);
     text-decoration: none;
+  }
+
+  .ad-announcement-bar-{{ section.id }} .links a,
+  .ad-announcement-bar-{{ section.id }} .social-links a {
     transition: opacity 0.2s ease;
   }
 
-  .ad-announcement-bar-{{ section.id }}.links a:hover {
+  .ad-announcement-bar-{{ section.id }} .links a:hover,
+  .ad-announcement-bar-{{ section.id }} .social-links a:hover {
     opacity: 0.7;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .announcements {
-    position: relative;
-    flex: 1;
+  .ad-announcement-bar-{{ section.id }} .announcements {
+    flex: 1 1 auto;
     min-width: 0;
     text-align: center;
-    overflow: hidden;
+    position: relative;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .announcement {
+  .ad-announcement-bar-{{ section.id }} .announcement {
     display: none;
     width: 100%;
+    overflow-wrap: anywhere;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .announcement.is-active {
+  .ad-announcement-bar-{{ section.id }} .announcement.is-active {
     display: block;
   }
 
-  .ad-announcement-bar-{{ section.id }}
-  .announcement a
-  , .ad-announcement-bar-{{ section.id }}
-  .announcement span {
-    color: var(--text);
-    text-decoration: none;
+  .ad-announcement-bar-{{ section.id }} .announcement a:hover {
+    text-decoration: underline;
   }
 
-  .ad-announcement-bar-{{ section.id }}.announcement a:hover {
-    text-decoration: underline;
+  .ad-announcement-bar-{{ section.id }} .social-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    gap: 12px;
   }
 
   @media screen and (max-width: 749px) {
     .ad-announcement-bar-{{ section.id }} {
-      --font-size: 1.3rem;
+      --font-size: {{ section.settings.mobile_font_size }}px;
     }
 
-    .ad-announcement-bar-{{ section.id }}
-    .ad-announcement-inner {
+    .ad-announcement-bar-{{ section.id }} .ad-announcement-inner {
       flex-direction: column;
       gap: 8px;
     }
 
-    .ad-announcement-bar-{{ section.id }}
-    .links {
+    .ad-announcement-bar-{{ section.id }} .links {
       width: 100%;
     }
 
-    .ad-announcement-bar-{{ section.id }}
-    .links ul {
+    .ad-announcement-bar-{{ section.id }} .links ul {
+      justify-content: center;
+      gap: 8px 15px;
+    }
+
+    .ad-announcement-bar-{{ section.id }} .announcements {
+      width: 100%;
+      flex: auto;
+    }
+
+    .ad-announcement-bar-{{ section.id }} .social-links {
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px 15px;
-    }
-
-    .ad-announcement-bar-{{ section.id }}
-    .announcements {
-      width: 100%;
     }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const announcementBars = document.querySelectorAll('.ad-announcement-bar-{{ section.id }}');
+  (function () {
+    var sectionId = '{{ section.id }}';
+    var selector = '.ad-announcement-bar-' + sectionId;
 
-    announcementBars.forEach(function (bar) {
-      const announcements = bar.querySelectorAll('[data-announcement]');
+    function initAnnouncementBar() {
+      var bars = document.querySelectorAll(selector);
 
-      if (announcements.length <= 1) return;
+      bars.forEach(function (bar) {
+        if (bar.dataset.sliderInitialized === 'true') return;
 
-      let current = 0;
+        var announcements = bar.querySelectorAll('[data-announcement]');
 
-      setInterval(function () {
-        announcements[current].classList.remove('is-active');
+        if (!announcements.length) return;
 
-        current = (current + 1) % announcements.length;
+        bar.dataset.sliderInitialized = 'true';
 
-        announcements[current].classList.add('is-active');
-      }, 4000);
-    });
-  });
+        var current = 0;
+
+        announcements.forEach(function (announcement, index) {
+          announcement.classList.toggle('is-active', index === 0);
+        });
+
+        if (announcements.length <= 1) return;
+
+        window.setInterval(function () {
+          if (!bar.isConnected) return;
+
+          announcements[current].classList.remove('is-active');
+
+          current = (current + 1) % announcements.length;
+
+          announcements[current].classList.add('is-active');
+        }, 4000);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnnouncementBar);
+    } else {
+      initAnnouncementBar();
+    }
+
+    document.addEventListener('shopify:section:load', initAnnouncementBar);
+  })();
 </script>
 
 {% schema %}
@@ -168,17 +246,17 @@
   "settings": [
     {
       "type": "header",
-      "content": "Links & Social Media"
+      "content": "Links and Social Media"
     },
     {
       "type": "link_list",
       "id": "links",
-      "label": "Links"
+      "label": "Navigation links"
     },
     {
       "type": "select",
       "id": "social_icons",
-      "label": "Social Media",
+      "label": "Social links",
       "options": [
         {
           "value": "hide",
@@ -193,19 +271,39 @@
     },
     {
       "type": "header",
-      "content": "Appearance and Order"
+      "content": "Appearance"
     },
     {
       "type": "color",
       "id": "bg",
       "label": "Background",
-      "alpha": true
+      "default": "#222222"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Text Color",
-      "alpha": true
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Desktop font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Mobile font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
     },
     {
       "type": "header",
@@ -218,7 +316,7 @@
       "max": 40,
       "step": 1,
       "unit": "px",
-      "label": "Vertical Padding",
+      "label": "Vertical padding",
       "default": 10
     },
     {
@@ -228,16 +326,27 @@
       "max": 40,
       "step": 1,
       "unit": "px",
-      "label": "Horizontal Padding",
+      "label": "Horizontal padding",
       "default": 10
     }
   ],
   "blocks": [
     {
-      "type": "announcement"
-    },
-    {
-      "type": "social-links"
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Announcement text",
+          "default": "Welcome to our store"
+        },
+        {
+          "type": "url",
+          "id": "text_url",
+          "label": "Announcement link"
+        }
+      ]
     }
   ],
   "enabled_on": {
@@ -245,7 +354,18 @@
   },
   "presets": [
     {
-      "name": "Advance Announcement"
+      "name": "Advance Announcement",
+      "blocks": [
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Discover our latest collection"
+          }
+        }
+      ]
     }
   ]
 }
