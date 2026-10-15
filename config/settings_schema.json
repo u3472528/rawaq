@@ -2027,7 +2027,7 @@
     "settings": [
       {"type": "url","id": "facebook_link", "label": "Facebook"},
       {"type": "url","id": "instagram_link", "label": "Instagram"},
-      {"type": "url","id": "tikTok_link", "label": "TikTok"},
+      {"type": "url","id": "tiktok_link", "label": "TikTok"},
       {"type": "url","id": "youtube_link", "label": "Youtube"},
       {"type": "url","id": "pinterest_link", "label": "Pinterest"}
     ]
