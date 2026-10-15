@@ -14,31 +14,43 @@
     "advanced_announcement_bar_yptUxB": {
       "type": "advanced-announcement-bar",
       "blocks": {
-        "announcement_tpKDnE": {
+        "announcement": {
           "type": "announcement",
+          "static": true,
           "settings": {
-            "text": "Worried to buy online ? 🛒",
+            "text": "Enjoy Your Shopping ,Without Fear",
             "text_url": ""
-          }
+          },
+          "blocks": {}
         },
-        "announcement_WeWkcD": {
-          "type": "announcement",
+        "social": {
+          "type": "social-links",
+          "static": true,
           "settings": {
-            "text": "We Make Your Choice , Valuable ! ✨",
-            "text_url": ""
-          }
+            "icon_color": "",
+            "facebook_url": "",
+            "instagram_url": "",
+            "youtube_url": "",
+            "tiktok_url": "",
+            "twitter_url": "",
+            "threads_url": "",
+            "linkedin_url": "",
+            "bluesky_url": "",
+            "snapchat_url": "",
+            "pinterest_url": "",
+            "tumblr_url": "",
+            "vimeo_url": "",
+            "custom_url": ""
+          },
+          "blocks": {}
         }
       },
-      "block_order": [
-        "announcement_tpKDnE",
-        "announcement_WeWkcD"
-      ],
       "name": "Advance Announcement",
       "settings": {
         "links": "left-announcement-bar",
         "social_icons": "show",
-        "bg": "#1D349A",
-        "text_color": "#FDFDFD",
+        "bg": "#1d349a",
+        "text_color": "#fdfdfd",
         "padd_vertical": 10,
         "padd_horizontal": 10
       }
