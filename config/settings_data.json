@@ -95,7 +95,7 @@
     "variant_swatch_radius": 32,
     "facebook_link": "https://www.facebook.com/rawaq",
     "instagram_link": "https://www.instagram.com/rawaq",
-    "tikTok_link": "https://www.tiktok.com/rawaq",
+    "tiktok_link": "https://www.tiktok.com/rawaq",
     "youtube_link": "https://www.youtube.com/rawaq",
     "pinterest_link": "https://www.pinterest.com/rawaq",
     "palette_variant_background": "{{ settings.color_palette.background }}",
@@ -107,6 +107,7 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
+    "tikTok_link": "https://www.tiktok.com/rawaq",
     "content_for_index": [],
     "color_palette": {
       "background": "#ffffff",
