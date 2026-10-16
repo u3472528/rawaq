@@ -52,5 +52,6 @@
   }
 
   .custom-header .brand-logo img {
+    width:auto;
     max-height:var(--height);
   }
