@@ -15,7 +15,7 @@ class AdvanceAnnouncementBar extends HTMLElement {
   }
 
   handleScroll() {
-    this.classList.toggle("is-scrolled", window.scrollY > 10);
+    this.classList.toggle("is-scrolled", window.scrollY > 10000);
   }
 }
 
