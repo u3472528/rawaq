@@ -2,12 +2,12 @@
 class AdvanceAnnouncementBar extends HTMLElement {
   constructor() {
     super();
-    this.handleScroll = this.handleScroll.bind(this);
+    // this.handleScroll = this.handleScroll.bind(this);
   }
 
   connectedCallback() {
     window.addEventListener("scroll", this.handleScroll, { passive: true });
-    this.handleScroll();
+    // this.handleScroll();
   }
 
   disconnectedCallback() {
