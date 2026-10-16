@@ -74,6 +74,8 @@
     .custom-header .menu-drawer-button {
       display:none;
     }
+  }
+  @media (max-width:1024px){
     .custom-header {
       display: grid;
       grid-template-areas: "L R" "M M";
