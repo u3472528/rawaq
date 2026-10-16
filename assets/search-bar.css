@@ -16,6 +16,7 @@
 
 .global-search input:focus-visible {
     border:none;
+    outline:none;
 }
 
 .global-search input {
