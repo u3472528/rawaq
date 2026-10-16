@@ -71,7 +71,8 @@
 
 
   @media (min-width:1024px){
-    .ustom-header .menu-drawer-button {
+    .custom-header .menu-drawer-button {
       display:none;
     }
+    
   }
