@@ -1,21 +1,27 @@
 {{ 'custom-header.css' | asset_url | stylesheet_tag }}
 <div class="custom-header custom-header-{{ section.id }}">
-    <div class="hamburger-brand-logo">
-      <button
-        type="button"
-        class="menu-drawer-button is-show"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-      >
-        <span class="hamburger-line"></span>
-      </button>
-      <div class="brand-logo">
-        <img src="{{  settings.logo | image_url }}" style="--height:{{ settings.logo_height }}px;" />
-      </div>
+  <div class="hamburger-brand-logo">
+    <button
+      type="button"
+      class="menu-drawer-button is-show"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="brand-logo">
+      <img src="{{  settings.logo | image_url }}" style="--height:{{ settings.logo_height }}px;" />
     </div>
-    <div class="search-bar">{% render 'search-bar' %}</div>
-  {%  render 'rft-header' %}
+  </div>
+  <div class="search-bar">{% render 'search-bar' %}</div>
+  {% render 'rft-header' %}
 </div>
+
+<style>
+  .shopify-section-{{ section.id }} {
+    background:#ffffff;
+  }
+</style>
 
 {% schema %}
 {
