@@ -9,12 +9,17 @@
     <span class="hamburger-line"></span>
   </button>
   <div class="brand-logo"><img src="{{  settings.logo | image_url }}" style="--height:{{ settings.logo_height }}px;" /></div>
+  <div class="search-bar">{%  render 'search-bar' %}</div>
 </div>
 
 {% schema %}
 {
   "name": "Custom Header",
-  "settings": [],
+  "settings": [
+    {"type": "header","content": "Menu"},
+    {"type": "link_list","id":"menu","label":"Menu"},
+
+  ],
   "enabled_on": {
     "groups": ["header"]
   },
