@@ -12,6 +12,9 @@
 }
 
 .global-search input {
+    padding-inline: 1rem;
+    width:100%;
+    
 }
 
 .global-search .search-icon svg {
