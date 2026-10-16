@@ -1,0 +1,14 @@
+
+{% assign placeholder = settings.searchbar_placeholder %}
+
+<div class="global-search">
+  <input
+    id="SearchBar"
+    class="search-bar"
+    type="search"
+    value=""
+    placeholder="{{ placeholder | default: 'What are you looking for?' }}"
+    data-search-bar-data
+  />
+  {{ 'search-icon.svg' | inline_asset_content }}
+</div>
