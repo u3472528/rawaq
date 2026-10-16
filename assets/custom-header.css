@@ -107,8 +107,24 @@
     @media (max-width:768px){
     .custom-header {
       display: grid;
-      grid-template-areas: "L L L R R" "M M M M M";
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-areas: "hm l l l r" "s s s s s";
     }
+    .custom-header .menu-drawer-button {
+      grid-area: hm;
+    }
+    .brand-logo {
+      grid-area: l;
+      place-items: center;
+    }
+    .custom-header .search-bar {
+      grid-area: s;
+    }
+    .custom-header .rtf-header {
+      grid-area: r;
+      justify-content: flex-end;
+    }
+  }
     @media (max-width:426px){
     .custom-header {
       display: grid;
