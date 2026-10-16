@@ -32,7 +32,7 @@ class AdvanceAnnouncementBar extends HTMLElement {
     if (!this.section) return;
 
     clearTimeout(this.hideTimer);
-
+    console.log(window.scrollY);
     if (window.scrollY > 10) {
       this.section.style.display = "";
       this.section.style.transform = "translateY(-50px)";
