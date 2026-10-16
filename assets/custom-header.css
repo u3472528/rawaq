@@ -5,6 +5,11 @@
     position: relative;
   }
 
+  .custom-header .hamburger-brand-logo {
+    display:flex;
+    align-items: center;
+  }
+  
   .custom-header .menu-drawer-button {
     position: relative;
     display: inline-block;
