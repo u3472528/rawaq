@@ -13,3 +13,9 @@
     display:flex;
     gap:.5rem;
 }
+
+.rtf-header .cart {
+    padding: .5rem;
+    background: lightgrey;
+    border-radius: 2rem;
+}
