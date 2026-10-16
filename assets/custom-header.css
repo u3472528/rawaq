@@ -22,10 +22,10 @@
     gap:3rem;
   }
 
-  .custom-header .hamburger-brand-logo {
+  /* .custom-header .hamburger-brand-logo {
     display:flex;
     align-items: center;
-  }
+  } */
 
   .custom-header .menu-drawer-button {
     position: relative;
@@ -90,9 +90,9 @@
       display: grid;
       grid-template-areas: "L R" "M M";
     }
-    .custom-header .hamburger-brand-logo {
+    /* .custom-header .hamburger-brand-logo {
       grid-area: L;
-    }
+    } */
     .custom-header .search-bar {
       grid-area: M;
     }

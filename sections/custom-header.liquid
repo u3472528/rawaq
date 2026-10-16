@@ -1,6 +1,6 @@
 {{ 'custom-header.css' | asset_url | stylesheet_tag }}
 <div class="custom-header custom-header-{{ section.id }}">
-  <div class="hamburger-brand-logo">
+  {% comment %} <div class="hamburger-brand-logo"> {% endcomment %}
     <button
       type="button"
       class="menu-drawer-button is-show"
@@ -13,7 +13,7 @@
 
       <img src="{{  settings.logo | image_url }}" style="--height:{{ settings.logo_height }}px;" />
     </a>
-  </div>
+  {% comment %} </div> {% endcomment %}
   <div class="search-bar">{% render 'search-bar' %}</div>
   {% render 'rft-header' %}
 </div>
