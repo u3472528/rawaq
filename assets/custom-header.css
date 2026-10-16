@@ -1,7 +1,7 @@
   #header-group {
     position:sticky;
     top:0;
-    z-index:2;
+    z-index:3;
   }
   .custom-header {
     width: 100%;
@@ -10,6 +10,7 @@
     display: flex;
     align-items: center;
     gap:1rem;
+    z-index:2;
   }
   .custom-header .lft {
     display: flex;
