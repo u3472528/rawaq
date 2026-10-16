@@ -1954,6 +1954,7 @@
       {
         "type": "range",
         "id": "search_bar_corners",
+        "label": "Corners",
         "min": 0,
         "max": 100,
         "step": 1,
