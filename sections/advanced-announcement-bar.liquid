@@ -96,6 +96,11 @@
 </ad-announcement-bar>
 
 <style>
+  #shopify-section-{{ section.id }} {
+   --bg: {{ section.settings.bg }};
+    background: var(--bg);
+  }
+  
   .ad-announcement-bar-{{ section.id }} {
     background: var(--bg);
     color: var(--text);
