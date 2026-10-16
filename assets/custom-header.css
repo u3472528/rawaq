@@ -1,10 +1,10 @@
-  .custom-header-{{ section.id }} {
+  .custom-header {
     display: block;
     width: 100%;
     position: relative;
   }
 
-  .custom-header-{{ section.id }} .menu-drawer-button {
+  .custom-header .menu-drawer-button {
     position: relative;
     display: inline-block;
     width: 40px;
@@ -19,7 +19,7 @@
     opacity: 1;
   }
 
-  .custom-header-{{ section.id }} .hamburger-line {
+  .custom-header .hamburger-line {
     position: absolute;
     top: 50%;
     left: 8px;
@@ -31,8 +31,8 @@
     border-radius: 2px;
   }
 
-  .custom-header-{{ section.id }} .hamburger-line::before,
-  .custom-header-{{ section.id }} .hamburger-line::after {
+  .custom-header .hamburger-line::before,
+  .custom-header .hamburger-line::after {
     content: "";
     position: absolute;
     left: 0;
@@ -43,10 +43,10 @@
     border-radius: 2px;
   }
 
-  .custom-header-{{ section.id }} .hamburger-line::before {
+  .custom-header .hamburger-line::before {
     top: -7px;
   }
 
-  .custom-header-{{ section.id }} .hamburger-line::after {
+  .custom-header .hamburger-line::after {
     top: 7px;
   }
