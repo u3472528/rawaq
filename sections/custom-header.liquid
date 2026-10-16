@@ -9,9 +9,10 @@
     >
       <span class="hamburger-line"></span>
     </button>
-    <div class="brand-logo">
+    <a href="{{ routes.root_url }}" class="brand-logo">
+
       <img src="{{  settings.logo | image_url }}" style="--height:{{ settings.logo_height }}px;" />
-    </div>
+    </a>
   </div>
   <div class="search-bar">{% render 'search-bar' %}</div>
   {% render 'rft-header' %}
