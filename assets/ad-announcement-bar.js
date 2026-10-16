@@ -10,10 +10,8 @@ class AdvanceAnnouncementBar extends HTMLElement {
   connectedCallback() {
     const sectionId = this.dataset.sectionId;
 
-    this.section = document.getElementById(
-      `shopify-section-${sectionId}`
-    );
-
+    this.section = document.getElementById(`shopify-section-${sectionId}`);
+    console.log(this.section)
     if (!this.section) return;
 
     this.section.style.transition = "transform 300ms ease";
