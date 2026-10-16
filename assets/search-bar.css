@@ -1,6 +1,7 @@
 
 .global-search {
     max-width:600px;
+    border-radius:var(--inputs-radius)
 }
 .global-search ,
 .global-search input{
@@ -8,5 +9,4 @@
 }
 
 .global-search input {
-    border-radius:var(--inputs-radius)
 }

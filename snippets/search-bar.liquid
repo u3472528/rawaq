@@ -1,9 +1,8 @@
 {{ 'search-bar.css' | asset_url | stylesheet_tag }}
 {% assign placeholder = settings.search_bar_placeholder %}
 
-<div style="--bg:#ededed;" class="global-search">
+<div style="--bg:#ededed;--inputs-radius:{{ settings.search_bar_corners }}px;" class="global-search">
   <input
-    style="--inputs-radius:{{ settings.search_bar_corners }}px"
     id="SearchBar"
     class="search-bar"
     type="search"
