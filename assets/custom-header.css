@@ -1,0 +1,52 @@
+  .custom-header-{{ section.id }} {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  .custom-header-{{ section.id }} .menu-drawer-button {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #000;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .custom-header-{{ section.id }} .hamburger-line {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    display: block;
+    width: 25px;
+    height: 2px;
+    transform: translateY(-50%);
+    background-color: #000;
+    border-radius: 2px;
+  }
+
+  .custom-header-{{ section.id }} .hamburger-line::before,
+  .custom-header-{{ section.id }} .hamburger-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #000;
+    border-radius: 2px;
+  }
+
+  .custom-header-{{ section.id }} .hamburger-line::before {
+    top: -7px;
+  }
+
+  .custom-header-{{ section.id }} .hamburger-line::after {
+    top: 7px;
+  }
