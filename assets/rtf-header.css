@@ -16,6 +16,6 @@
 
 .rtf-header .cart {
     padding: .5rem;
-    background: lightgrey;
+    background: var(--bg);
     border-radius: 2rem;
 }
