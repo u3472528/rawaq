@@ -111,7 +111,7 @@
     }
     @media (max-width:426px){
     .custom-header {
-      display: flex;
+      display: grid;
     }
   }
 
