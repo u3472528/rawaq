@@ -1,0 +1,11 @@
+{{ 'rtf-header.css' | asset_url | stylesheet_tag }}
+
+<div class="rtf-header">
+  <span class="person-account">
+    <span class="svg-wapper">{{ 'person-icon.svg' | inline_asset_content }}</span>
+    <span class="label">Sign in/ Register</span>
+  </span>
+  <span class="cart">
+    <span class="svg-wapper">{{ 'cart-icon.svg' | inline_asset_content }}</span>
+  </span>
+</div>
