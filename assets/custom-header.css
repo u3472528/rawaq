@@ -110,3 +110,26 @@
       grid-template-areas: "L L R" "M M M";
     }
   }
+
+  @media (max-width: 1024px) {
+  .custom-header .hamburger-brand-logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-header .brand-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-header .brand-logo img {
+    display: block;
+    width: auto;
+    max-height: var(--height);
+  }
+}
