@@ -1,6 +1,6 @@
 
 .global-search {
-    max-width:600px;
+    width:600px;
     border-radius:var(--inputs-radius);
     display: flex;
     align-items: center;
@@ -14,7 +14,7 @@
 .global-search input {
     padding-inline: 1rem;
     width:100%;
-    
+
 }
 
 .global-search .search-icon svg {
