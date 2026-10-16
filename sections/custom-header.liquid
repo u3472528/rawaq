@@ -1,5 +1,5 @@
-
-<div class="custom-header custom-header-{{ section.id }}">
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+<div class="custom-header custom-header-{{ section.id }}" style="--header-section-id: {{ section.id }};">
   <button
     type="button"
     class="menu-drawer-button is-show"
@@ -8,7 +8,7 @@
   >
     <span class="hamburger-line"></span>
   </button>
-  <div class="brand-logo"><img src="{{  settings.logo | image_url }}" width="auto" height="{{ settings.logo_height }}" /></div>
+  <div class="brand-logo"><img src="{{  settings.logo | image_url }}" /></div>
 </div>
 
 <style>
