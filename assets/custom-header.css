@@ -68,3 +68,10 @@
     width:auto;
     max-height:var(--height);
   }
+
+
+  @media (min-width:1024px){
+    .ustom-header .menu-drawer-button {
+      display:none;
+    }
+  }
