@@ -1,7 +1,8 @@
-class AdvanceAnnouncementBar extends HtmlElement {
+class AdvanceAnnouncementBar extends HTMLElement {
     constructor() {
-        console.log("TEST")
         super();
+        console.log("TEST");
     }
 }
-custom.define('ad-annoncement-bar',AdvanceAnnouncementBar);
+
+customElements.define('ad-announcement-bar', AdvanceAnnouncementBar);
