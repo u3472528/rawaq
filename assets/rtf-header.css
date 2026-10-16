@@ -1,3 +1,9 @@
+.rtf-header {
+    display:flex;
+    align-items:center;
+    gap:2rem;
+}
+
 .rtf-header .svg-wrapper svg {
     width:24px;
     height:24px;
@@ -5,4 +11,5 @@
 
 .rtf-header div {
     display:flex;
+    gap:.5rem;
 }
