@@ -1,0 +1,5 @@
+
+.global-search {
+    max-width:600px;
+    background:var(--bg);
+}
