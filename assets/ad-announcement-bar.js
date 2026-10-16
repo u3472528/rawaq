@@ -3,18 +3,24 @@ class AdvanceAnnouncementBar extends HTMLElement {
   constructor() {
     super();
     this.handleScroll = this.handleScroll.bind(this);
-    this.hideTimer = null;
     this.section = null;
+    this.hideTimer = null;
   }
 
   connectedCallback() {
     const sectionId = this.dataset.sectionId;
 
-    this.section = document.getElementById(`shopify-section-${sectionId}`);
-    console.log(this.section)
-    if (!this.section) return;
+    this.section = document.getElementById(
+      `shopify-section-${sectionId}`
+    );
+
+    if (!this.section) {
+      console.warn("Announcement section not found:", sectionId);
+      return;
+    }
 
     this.section.style.transition = "transform 300ms ease";
+    this.section.style.willChange = "transform";
 
     window.addEventListener("scroll", this.handleScroll, {
       passive: true
@@ -32,23 +38,29 @@ class AdvanceAnnouncementBar extends HTMLElement {
     if (!this.section) return;
 
     clearTimeout(this.hideTimer);
-    console.log(window.scrollY);
+
     if (window.scrollY > 10) {
-      this.section.style.display = "";
-      this.section.style.transform = "translateY(-50px)";
+      // Animate upward
+      this.section.style.transform = "translateY(-100%)";
 
       this.hideTimer = setTimeout(() => {
         if (window.scrollY > 10 && this.section) {
-          this.section.style.display = "none";
+          this.section.style.visibility = "hidden";
+          this.section.style.pointerEvents = "none";
         }
       }, 300);
     } else {
-      this.section.style.display = "";
+      // Show when back at the top
+      this.section.style.visibility = "visible";
+      this.section.style.pointerEvents = "";
       this.section.style.transform = "translateY(0)";
     }
   }
 }
 
 if (!customElements.get("ad-announcement-bar")) {
-  customElements.define("ad-announcement-bar",AdvanceAnnouncementBar);
+  customElements.define(
+    "ad-announcement-bar",
+    AdvanceAnnouncementBar
+  );
 }
