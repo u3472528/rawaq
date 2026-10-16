@@ -1,7 +1,10 @@
 
 .global-search {
     max-width:600px;
-    border-radius:var(--inputs-radius)
+    border-radius:var(--inputs-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .global-search ,
 .global-search input{
