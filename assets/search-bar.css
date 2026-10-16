@@ -10,3 +10,7 @@
 
 .global-search input {
 }
+
+.global-search svg {
+    width: 1.5rem;
+}
