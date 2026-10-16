@@ -12,6 +12,7 @@
 .rtf-header div {
     display:flex;
     gap:.5rem;
+    padding:.5rem;
 }
 
 .rtf-header .cart {
