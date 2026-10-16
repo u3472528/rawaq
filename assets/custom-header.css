@@ -84,9 +84,13 @@
       grid-area: L;
     }
     .custom-header .search-bar {
-          grid-area: M;
+      grid-area: M;
+    }
+    .custom-header .search-bar .global-search {
+      width:unset;
     }
     .custom-header .rtf-header {
-          grid-area: R;
+      grid-area: R;
+      justify-content: flex-end;
     }
   }
