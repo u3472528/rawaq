@@ -50,3 +50,7 @@
   .custom-header .hamburger-line::after {
     top: 7px;
   }
+
+  .custom-header .brand-logo img {
+    max-height:var(--height);
+  }
