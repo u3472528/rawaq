@@ -1944,6 +1944,16 @@
     ]
   },
   {
+    "name": "Seach Bar",
+    "settings": [
+      {
+        "type": "text",
+        "id": "search_bar_placeholder",
+        "label": "Placeholder"
+      }
+    ]
+  },
+  {
     "name": "t:names.swatches",
     "settings": [
       {
@@ -2025,11 +2035,31 @@
   {
     "name": "t:content.social_media",
     "settings": [
-      {"type": "url","id": "facebook_link", "label": "Facebook"},
-      {"type": "url","id": "instagram_link", "label": "Instagram"},
-      {"type": "url","id": "tiktok_link", "label": "TikTok"},
-      {"type": "url","id": "youtube_link", "label": "Youtube"},
-      {"type": "url","id": "pinterest_link", "label": "Pinterest"}
+      {
+        "type": "url",
+        "id": "facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "tiktok_link",
+        "label": "TikTok"
+      },
+      {
+        "type": "url",
+        "id": "youtube_link",
+        "label": "Youtube"
+      },
+      {
+        "type": "url",
+        "id": "pinterest_link",
+        "label": "Pinterest"
+      }
     ]
   },
   {
