@@ -1,6 +1,7 @@
 {%- assign links = section.settings.links -%}
 <script src="{{ 'ad-announcement-bar.js' | asset_url }}" defer="defer"></script>
-<ad-announcement-bar
+<ad-announcement-bar>
+<div
   class="ad-announcement-bar ad-announcement-bar-{{ section.id }}"
   style="
     --bg: {{ section.settings.bg }};
@@ -90,6 +91,7 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+  </div>
   </div>
 </ad-announcement-bar>
 
