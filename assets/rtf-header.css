@@ -28,7 +28,7 @@
     }
 }
 
-@media (max-width:426px){
+@media (max-width:768px){
     .rtf-header .person-account .label {
         display:none;
     }

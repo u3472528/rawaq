@@ -104,3 +104,9 @@
       justify-content: flex-end;
     }
   }
+    @media (max-width:768px){
+    .custom-header {
+      display: grid;
+      grid-template-areas: "L L R" "M M M";
+    }
+  }
