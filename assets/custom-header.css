@@ -206,33 +206,30 @@
   }
 }
 
-/* Medium screens and tablets */
+/* Tablet and mobile: center logo across the entire header */
 @media (max-width: 1024px) {
   .custom-header {
-    display: grid;
-    grid-template-areas:
-      "L R"
-      "M M";
-    grid-template-columns: 1fr auto;
-    align-items: center;
+    position: relative;
   }
 
   .custom-header .hamburger-brand-logo {
     grid-area: L;
-    position: relative;
     display: flex;
     align-items: center;
-    min-width: 0;
+    position: static;
   }
 
   .custom-header .brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute !important;
+    left: 50% !important;
+    top: 1.2rem;
+    transform: translateX(-50%) !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: calc(100% - 50px);
+    width: max-content;
+    max-width: 40%;
+    z-index: 5;
   }
 
   .custom-header .brand-logo img {
@@ -243,87 +240,38 @@
     object-fit: contain;
   }
 
+  .custom-header .rtf-header {
+    grid-area: R;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 6;
+  }
+
   .custom-header .search-bar {
     grid-area: M;
-    min-width: 0;
     width: 100%;
+    min-width: 0;
   }
 
   .custom-header .search-bar .global-search {
     width: 100%;
   }
-
-  .custom-header .rtf-header {
-    grid-area: R;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    min-width: 0;
-  }
 }
 
-/* Small screens and mobile */
+/* Small mobile screens */
 @media (max-width: 768px) {
   .custom-header {
-    display: grid;
     grid-template-areas:
       "L L R"
       "M M M";
     grid-template-columns: auto 1fr auto;
-    align-items: center;
-    column-gap: 0.5rem;
-    row-gap: 0.75rem;
-  }
-
-  .custom-header .hamburger-brand-logo {
-    grid-area: L;
-    position: static;
-    display: flex;
-    align-items: center;
-    min-width: 0;
   }
 
   .custom-header .brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 40%;
-    z-index: 1;
-  }
-
-  .custom-header .brand-logo img {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    max-height: var(--height);
-    object-fit: contain;
-  }
-
-  .custom-header .menu-drawer-button {
-    display: inline-block;
-    z-index: 2;
-  }
-
-  .custom-header .rtf-header {
-    grid-area: R;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    min-width: 0;
-    position: relative;
-    z-index: 2;
-  }
-
-  .custom-header .search-bar {
-    grid-area: M;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .custom-header .search-bar .global-search {
-    width: 100%;
+    top: 1.2rem;
+    max-width: 35%;
   }
 }
