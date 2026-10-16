@@ -74,5 +74,17 @@
     .custom-header .menu-drawer-button {
       display:none;
     }
-    
+    .custom-header {
+      display: grid;
+      grid-template-areas: "L R" "M M";
+    }
+    .custom-header .hamburger-brand-logo {
+      grid-area: L;
+    }
+    .custom-header .search-bar {
+          grid-area: M;
+    }
+    .custom-header .rtf-header {
+          grid-area: R;
+    }
   }
