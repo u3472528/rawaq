@@ -3,13 +3,15 @@
     align-items: center;
     width: 100%;
     position: relative;
+    padding-block: 1.2rem;
+
   }
 
   .custom-header .hamburger-brand-logo {
     display:flex;
     align-items: center;
   }
-  
+
   .custom-header .menu-drawer-button {
     position: relative;
     display: inline-block;
