@@ -6,3 +6,7 @@
 .global-search input{
     background:var(--bg);
 }
+
+.global-search input {
+    border-radius:var(--inputs-radius)
+}
