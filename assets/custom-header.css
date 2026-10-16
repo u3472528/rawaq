@@ -107,7 +107,11 @@
     @media (max-width:768px){
     .custom-header {
       display: grid;
-      grid-template-areas: "L L R" "M M M";
+      grid-template-areas: "L L L R R" "M M M M M";
+    }
+    @media (max-width:426px){
+    .custom-header {
+      display: flex;
     }
   }
 
