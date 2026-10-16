@@ -1,5 +1,8 @@
 
 .global-search {
     max-width:600px;
+}
+.global-search ,
+.global-search input{
     background:var(--bg);
 }
