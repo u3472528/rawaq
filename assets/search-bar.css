@@ -5,12 +5,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
 }
 .global-search ,
 .global-search input{
     background:var(--bg);
 }
 
+.global-search input:focus,
+.global-search input:active {
+    border:none;
+}
 .global-search input {
     padding-inline: 1rem;
     width:100%;
