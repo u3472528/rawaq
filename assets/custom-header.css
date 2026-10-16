@@ -4,8 +4,12 @@
     padding-block: 1.2rem;
     display: flex;
     align-items: center;
+    gap:1rem;
+  }
+  .custom-header .lft {
+    display: flex;
+    align-items: center;
     gap:3rem;
-
   }
 
   .custom-header .hamburger-brand-logo {
