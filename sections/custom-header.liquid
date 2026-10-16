@@ -1,7 +1,5 @@
 {{ 'custom-header.css' | asset_url | stylesheet_tag }}
 <div class="custom-header custom-header-{{ section.id }}">
-  <div class="lft">
-    <div class="hamburger-brand-logo">
       <button
         type="button"
         class="menu-drawer-button is-show"
@@ -13,9 +11,7 @@
       <div class="brand-logo">
         <img src="{{  settings.logo | image_url }}" style="--height:{{ settings.logo_height }}px;" />
       </div>
-    </div>
     <div class="search-bar">{% render 'search-bar' %}</div>
-  </div>
   {%  render 'rft-header' %}
 </div>
 
