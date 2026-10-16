@@ -1950,6 +1950,15 @@
         "type": "text",
         "id": "search_bar_placeholder",
         "label": "Placeholder"
+      },
+      {
+        "type": "range",
+        "id": "search_bar_corners",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 100
       }
     ]
   },
