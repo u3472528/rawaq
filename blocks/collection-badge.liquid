@@ -1,10 +1,12 @@
 {% schema %}
 {
   "name": "Collection Badge",
-  "settings": [],
-  "blocks": [
-    
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "collection_label", "label": "Label", "info": "keep empty for default label" },
+    { "type": "image_picker", "id": "collection_image", "label": "Logo" }
   ],
+  "blocks": [],
   "presets": [
     {
       "name": "Collection Badge"
